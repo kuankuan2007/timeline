@@ -1,4 +1,4 @@
-import { RoomStatue, type Activity } from '@/types/timeline';
+import { type Activity } from '@/types/timeline';
 
 const activitys: Activity[] = [
   {
@@ -105,7 +105,6 @@ const activitys: Activity[] = [
     dateEnd: new Date('2025-11-23'),
     city: '重庆',
     address: '万垚酒店',
-    roomStatus: RoomStatue.FindingRoom,
   },
 ];
 export default activitys;
