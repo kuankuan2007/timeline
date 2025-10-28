@@ -106,5 +106,13 @@ const activitys: Activity[] = [
     city: '重庆',
     address: '万垚酒店',
   },
+  {
+    name: '云幽岛',
+    title: '云幽端月节',
+    dateStart: new Date('2026-01-30'),
+    dateEnd: new Date('2026-02-01'),
+    city: '成都',
+    address: '成都雅居乐豪生大酒店',
+  },
 ];
 export default activitys;
