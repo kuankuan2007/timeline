@@ -8,16 +8,25 @@
       }[themeValue]!
         " class="theme-button-icon" />
     </button>
-    <div class="timeline">
-      <div v-for="activity in activitys" :key="activity.name + '.' + activity.title" class="activity">
+    <div class="timeline-list">
+      <div v-for="activity, index in activitys" :key="activity.name + '.' + activity.title" class="activity">
+
         <div class="timeline">
+          <div class="time-tag"
+            v-if="index && activitys[index - 1]?.dateStart.getMonth() !== activity.dateStart.getMonth()">
+            <div class="month">{{ activity.dateStart.getMonth() + 1 }}月</div>
+            <div class="time-tag-line"></div>
+            <div class="year" :style="{
+              opacity: index && activitys[index - 1]?.dateStart.getFullYear() !== activity.dateStart.getFullYear() ? 1 : 0
+            }">{{ activity.dateStart.getFullYear() }}年</div>
+          </div>
           <div class="before line"></div>
           <div class="ball"></div>
           <div class="after line"></div>
         </div>
         <div class="content">
           <p class="title-box"><span class="name">{{ activity.name }}</span>·<span class="title">{{ activity.title
-          }}</span></p>
+              }}</span></p>
           <p class="date-city"><k-icon id="calendar" inline /> <span class="date">
               {{ dateToString(activity.dateStart) }} 至 {{ dateToString(activity.dateEnd) }} ({{ activity.duration()
               }}天)</span></p>
@@ -87,7 +96,7 @@ button.theme-button {
   }
 }
 
-.timeline {
+.timeline-list {
   font-size: min(1rem, 2.5vmin);
   display: grid;
 
@@ -97,18 +106,31 @@ button.theme-button {
 
   .activity {
 
-
+    position: relative;
     display: flex;
 
     column-gap: 1em;
 
+    $timeline-width: 2em;
+
+
+
     .timeline {
 
-      width: 2em;
+      width: $timeline-width;
       position: relative;
       $size: 1em;
       $line-width: 0.3em;
-      opacity: 0.5;
+
+      @include useTheme {
+        $timeline-color: color.mix(getTheme('color'), getTheme('background'), 50%);
+
+        .ball,
+        .line,
+        .time-tag-line {
+          background-color: $timeline-color;
+        }
+      }
 
       .ball {
         width: $size;
@@ -119,9 +141,6 @@ button.theme-button {
         border-radius: 9999999px;
         transform: translate(-50%, -50%);
 
-        @include useTheme {
-          background: getTheme('color');
-        }
       }
 
       .line {
@@ -131,8 +150,28 @@ button.theme-button {
         left: 50%;
         transform: translateX(-50%);
 
-        @include useTheme {
-          background: getTheme('color');
+      }
+
+      .time-tag {
+        position: absolute;
+
+        transform: translate(-100%, -50%);
+
+        left: 0.5 * $timeline-width;
+
+        text-wrap: nowrap;
+        white-space: nowrap;
+        text-align: right;
+
+        .time-tag-line {
+          height: $line-width * 0.6;
+          border-top-left-radius: 9999999px;
+          border-bottom-left-radius: 9999999px;
+        }
+
+        .month,
+        .year {
+          padding-right: 0.5em;
         }
       }
 
