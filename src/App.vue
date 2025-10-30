@@ -20,13 +20,14 @@
               opacity: index && activitys[index - 1]?.dateStart.getFullYear() !== activity.dateStart.getFullYear() ? 1 : 0
             }">{{ activity.dateStart.getFullYear() }}年</div>
           </div>
+          <div class="activity-line"></div>
           <div class="before line"></div>
           <div class="ball"></div>
           <div class="after line"></div>
         </div>
         <div class="content">
           <p class="title-box"><span class="name">{{ activity.name }}</span>·<span class="title">{{ activity.title
-              }}</span></p>
+          }}</span></p>
           <p class="date-city"><k-icon id="calendar" inline /> <span class="date">
               {{ dateToString(activity.dateStart) }} 至 {{ dateToString(activity.dateEnd) }} ({{ activity.duration()
               }}天)</span></p>
@@ -109,7 +110,8 @@ button.theme-button {
     position: relative;
     display: flex;
 
-    column-gap: 1em;
+    $column-gap: 1em;
+    column-gap: $column-gap;
 
     $timeline-width: 2em;
 
@@ -127,28 +129,20 @@ button.theme-button {
 
         .ball,
         .line,
-        .time-tag-line {
+        .time-tag-line,
+        .activity-line {
           background-color: $timeline-color;
+          border-color: $timeline-color;
         }
       }
 
       .ball {
-        width: $size;
-        height: $size;
+        border: $size*0.5 solid;
         position: absolute;
         left: 50%;
         top: 50%;
         border-radius: 9999999px;
         transform: translate(-50%, -50%);
-
-      }
-
-      .line {
-        width: $line-width;
-        height: 50%;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
 
       }
 
@@ -163,8 +157,10 @@ button.theme-button {
         white-space: nowrap;
         text-align: right;
 
+        user-select: none;
+
         .time-tag-line {
-          height: $line-width * 0.6;
+          border: $line-width * 0.3 solid;
           border-top-left-radius: 9999999px;
           border-bottom-left-radius: 9999999px;
         }
@@ -174,6 +170,24 @@ button.theme-button {
           padding-right: 0.5em;
         }
       }
+
+      .activity-line {
+        width: $size + $column-gap;
+        top: 50%;
+        border: $line-width * 0.3 solid;
+        position: absolute;
+        left: 50%;
+      }
+
+      .line {
+        border: $line-width * 0.5 solid;
+        height: 50%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+      }
+
 
       .before {
         top: 0;
@@ -190,9 +204,13 @@ button.theme-button {
       padding: 1em;
       flex: 1 1 auto;
       position: relative;
+      border: 0.1em solid;
+
 
       @include useTheme {
         background: color.mix(getTheme('background'), getTheme('active-color'), 80%);
+        border-color: color.mix(getTheme('background'), getTheme('active-color'), 70%);
+        filter: drop-shadow(0 0 0.3em rgba(color.mix(getTheme('background'), getTheme('active-color'), 70%), 0.5));
       }
 
 
