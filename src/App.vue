@@ -204,12 +204,18 @@ button.theme-button {
     }
 
     .content {
-      border-radius: 1em;
+      overflow: hidden;
+      border-radius: 1.5em;
       margin: 1em 0;
       padding: 1em;
       flex: 1 1 auto;
       position: relative;
       border: 0.1em solid;
+
+      @supports (corner-shape: squircle) {
+        corner-shape: squircle;
+        border-radius: 3em;
+      }
 
 
       @include useTheme {
@@ -234,7 +240,7 @@ button.theme-button {
         position: absolute;
         right: 0;
         bottom: 0;
-        border-radius: 0.3em 0.3em 1em 0.3em;
+        border-radius: 0.4em 0.4em 0 0.4em;
         font-size: 0.8em;
         padding: 0.3em 1em;
 
