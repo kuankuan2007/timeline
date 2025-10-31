@@ -31,7 +31,12 @@
           <p class="date-city"><k-icon id="calendar" inline /> <span class="date">
               {{ dateToString(activity.dateStart) }} 至 {{ dateToString(activity.dateEnd) }} ({{ activity.duration()
               }}天)</span></p>
-          <p class="address"><k-icon id="address" inline />{{ activity.address }}</p>
+          <div class="address-box">
+            <p class="city"><k-icon id="city" inline /> <span v-if="activity.province">{{ activity.province
+            }}·</span><span v-if="activity.city">{{ activity.city }}</span></p>
+            <p class="address"><k-icon id="address" inline />{{ activity.address }}</p>
+          </div>
+
           <p v-if="activity.roomStatus" class="room-status">拼房：{{ roomStatueText[activity.roomStatus] }}</p>
           <div class="statue" :class="`statue-${activity.statue()}`">{{ statueText[activity.statue()] }}</div>
         </div>

@@ -111,6 +111,7 @@ const activitys: Activity[] = [
     title: '云幽端月节',
     dateStart: new Date('2026-01-30'),
     dateEnd: new Date('2026-02-01'),
+    province: '四川',
     city: '成都',
     address: '成都雅居乐豪生大酒店',
   },
