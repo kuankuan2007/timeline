@@ -132,6 +132,7 @@ button.theme-button {
       @include useTheme {
         $timeline-color: color.mix(getTheme('color'), getTheme('background'), 50%);
 
+        filter: drop-shadow(0 0 0.2em rgba(getTheme('color'), 0.3));
         .ball,
         .line,
         .time-tag-line,
