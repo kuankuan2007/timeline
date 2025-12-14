@@ -115,5 +115,14 @@ const activitys: Activity[] = [
     city: '成都',
     address: '成都雅居乐豪生大酒店',
   },
+  {
+    name: '福瑞八奇物志',
+    title: '雾影假说',
+    dateStart: new Date('2026-02-07 UTC+8'),
+    dateEnd: new Date('2026-02-08 UTC+8'),
+    province: '四川',
+    city: '成都',
+    address: '路易城堡',
+  },
 ];
 export default activitys;
