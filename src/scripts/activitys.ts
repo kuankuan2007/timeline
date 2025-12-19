@@ -1,4 +1,4 @@
-import { type Activity } from '@/types/timeline';
+import { RoomStatue, type Activity } from '@/types/timeline';
 
 const activitys: Activity[] = [
   {
@@ -123,6 +123,7 @@ const activitys: Activity[] = [
     province: '四川',
     city: '成都',
     address: '路易城堡',
+    roomStatus: RoomStatue.FindingRoom,
   },
 ];
 export default activitys;

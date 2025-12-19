@@ -34,10 +34,10 @@
           <div class="address-box">
             <p class="city"><k-icon id="city" inline /> <span v-if="activity.province">{{ activity.province
             }}·</span><span v-if="activity.city">{{ activity.city }}</span></p>
-            <p class="address"><k-icon id="address" inline />{{ activity.address }}</p>
+            <p class="address"><k-icon id="address" inline /> {{ activity.address }}</p>
           </div>
 
-          <p v-if="activity.roomStatus" class="room-status">拼房：{{ roomStatueText[activity.roomStatus] }}</p>
+          <div v-if="activity.roomStatus" class="room-status">{{ roomStatueText[activity.roomStatus] }}</div>
           <div class="statue" :class="`statue-${activity.statue()}`">{{ statueText[activity.statue()] }}</div>
         </div>
       </div>
@@ -133,6 +133,7 @@ button.theme-button {
         $timeline-color: color.mix(getTheme('color'), getTheme('background'), 50%);
 
         filter: drop-shadow(0 0 0.2em rgba(getTheme('color'), 0.3));
+
         .ball,
         .line,
         .time-tag-line,
@@ -261,6 +262,19 @@ button.theme-button {
           @include useTheme {
             background-color: color.mix(getTheme('color'), getTheme('background'), 50%);
           }
+        }
+      }
+
+      .room-status {
+        position: absolute;
+        right: 0;
+        top: 0;
+        border-radius: 0.4em 0 0.4em 0.4em;
+        font-size: 0.8em;
+        padding: 0.3em 1em;
+
+        @include useTheme {
+          background-color: color.mix(getTheme('strong-color'), getTheme('background'), 30%);
         }
       }
     }
