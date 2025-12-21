@@ -25,8 +25,8 @@ const show = defineModel<boolean>("show")
   position: fixed;
   left: 1em;
   bottom: 1em;
-  font-size: 0.8em;
-  width: 60vw;
+  font-size: min(2vw, 1em);
+  width: 40em;
   padding: 1em;
   pointer-events: none;
   border-radius: 2em;
