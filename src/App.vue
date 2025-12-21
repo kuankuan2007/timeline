@@ -1,13 +1,6 @@
 <template>
   <div class="app-root">
-    <button class="theme-button clear" @click="changeToNextTheme">
-      <k-icon :id="{
-        auto: 'os-follow',
-        light: 'light',
-        dark: 'night',
-      }[themeValue]!
-        " class="theme-button-icon" />
-    </button>
+    <k-theme-button @show-debug="showDebug = true" />
     <div class="timeline-list">
       <div v-for="activity, index in activitys" :key="activity.name + '.' + activity.title" class="activity">
 
@@ -28,7 +21,7 @@
         <div class="content" tabindex="0">
 
           <p class="title-box"><span class="name">{{ activity.name }}</span>·<span class="title">{{ activity.title
-              }}</span></p>
+          }}</span></p>
 
           <div class="detail">
             <p class="date-city"><k-icon id="calendar" inline /> <span class="date">
@@ -36,7 +29,7 @@
                 }}天)</span></p>
             <div class="address-box">
               <p class="city"><k-icon id="city" inline /> <span v-if="activity.province">{{ activity.province
-              }}·</span><span v-if="activity.city">{{ activity.city }}</span></p>
+                  }}·</span><span v-if="activity.city">{{ activity.city }}</span></p>
               <p class="address"><k-icon id="address" inline /> {{ activity.address }}</p>
             </div>
           </div>
@@ -48,13 +41,16 @@
         </div>
       </div>
     </div>
+    <k-debug v-model:show="showDebug" />
   </div>
 </template>
 <script setup lang="ts">
 import _activitys from './scripts/activitys';
 import KIcon from './components/KIcon.vue';
 import { Statue, statueText, roomStatueText } from './types/timeline';
-import { themeValue, themeValueList } from './scripts/theme';
+import KDebug from './components/KDebug.vue';
+import KThemeButton from './components/KThemeButton.vue';
+const showDebug = ref(false);
 const activitys = ref(_activitys.toSorted((a, b) => b.dateStart.getTime() - a.dateStart.getTime()).map((activity) => ({
   ...activity,
   statue() {
@@ -73,40 +69,11 @@ const activitys = ref(_activitys.toSorted((a, b) => b.dateStart.getTime() - a.da
 function dateToString(date: Date) {
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 }
-function changeToNextTheme() {
-  themeValue.value =
-    themeValueList[(themeValueList.indexOf(themeValue.value) + 1) % themeValueList.length]!;
-}
 </script>
 <style scoped lang="scss">
 @use '@/styles/theme.scss' as *;
 @use 'sass:color';
 
-button.theme-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  appearance: none;
-  all: unset;
-  font-size: 2em;
-  cursor: pointer;
-  transition: 0.3s;
-  padding: 0.1em;
-  border: 0.1em solid transparent;
-  border-radius: 0.3em;
-
-  &:focus {
-    @include useTheme {
-      border-color: getTheme('active-color');
-    }
-  }
-
-  &:hover {
-    @include useTheme {
-      color: getTheme('active-color');
-    }
-  }
-}
 
 .timeline-list {
   font-size: min(1rem, 2.5vmin);
@@ -232,7 +199,9 @@ button.theme-button {
         border-color: color.mix(getTheme('background'), getTheme('active-color'), 70%);
         filter: drop-shadow(0 0 0.3em rgba(color.mix(getTheme('background'), getTheme('active-color'), 70%), 0.5));
       }
-      &:hover,&:focus{
+
+      &:hover,
+      &:focus {
         @include useTheme {
           background: color.mix(getTheme('background'), getTheme('active-color'), 80%);
           border-color: color.mix(getTheme('background'), getTheme('active-color'), 60%);
