@@ -25,19 +25,25 @@
           <div class="ball"></div>
           <div class="after line"></div>
         </div>
-        <div class="content">
+        <div class="content" tabindex="0">
+
           <p class="title-box"><span class="name">{{ activity.name }}</span>·<span class="title">{{ activity.title
-          }}</span></p>
-          <p class="date-city"><k-icon id="calendar" inline /> <span class="date">
-              {{ dateToString(activity.dateStart) }} 至 {{ dateToString(activity.dateEnd) }} ({{ activity.duration()
-              }}天)</span></p>
-          <div class="address-box">
-            <p class="city"><k-icon id="city" inline /> <span v-if="activity.province">{{ activity.province
-            }}·</span><span v-if="activity.city">{{ activity.city }}</span></p>
-            <p class="address"><k-icon id="address" inline /> {{ activity.address }}</p>
+              }}</span></p>
+
+          <div class="detail">
+            <p class="date-city"><k-icon id="calendar" inline /> <span class="date">
+                {{ dateToString(activity.dateStart) }} 至 {{ dateToString(activity.dateEnd) }} ({{ activity.duration()
+                }}天)</span></p>
+            <div class="address-box">
+              <p class="city"><k-icon id="city" inline /> <span v-if="activity.province">{{ activity.province
+              }}·</span><span v-if="activity.city">{{ activity.city }}</span></p>
+              <p class="address"><k-icon id="address" inline /> {{ activity.address }}</p>
+            </div>
           </div>
 
-          <div v-if="activity.roomStatus" class="room-status">{{ roomStatueText[activity.roomStatus] }}</div>
+          <div v-if="activity.roomStatus && activity.statue() === Statue.Plan" class="room-status">{{
+            roomStatueText[activity.roomStatus] }}</div>
+
           <div class="statue" :class="`statue-${activity.statue()}`">{{ statueText[activity.statue()] }}</div>
         </div>
       </div>
@@ -213,6 +219,7 @@ button.theme-button {
       flex: 1 1 auto;
       position: relative;
       border: 0.1em solid;
+      transition: 0.3s;
 
       @supports (corner-shape: squircle) {
         corner-shape: squircle;
@@ -221,9 +228,16 @@ button.theme-button {
 
 
       @include useTheme {
-        background: color.mix(getTheme('background'), getTheme('active-color'), 80%);
+        background: color.mix(getTheme('background'), getTheme('active-color'), 85%);
         border-color: color.mix(getTheme('background'), getTheme('active-color'), 70%);
         filter: drop-shadow(0 0 0.3em rgba(color.mix(getTheme('background'), getTheme('active-color'), 70%), 0.5));
+      }
+      &:hover,&:focus{
+        @include useTheme {
+          background: color.mix(getTheme('background'), getTheme('active-color'), 80%);
+          border-color: color.mix(getTheme('background'), getTheme('active-color'), 60%);
+          filter: drop-shadow(0 0 0.6em rgba(color.mix(getTheme('background'), getTheme('active-color'), 50%), 0.8));
+        }
       }
 
 
