@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { RoomStatue, type Activity } from '@/types/timeline';
 
 const activitys: Activity[] = [
