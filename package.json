@@ -33,7 +33,7 @@
     "compressing": "^2.0.0",
     "cssnano": "^7.1.1",
     "esbuild": "^0.25.9",
-    "eslint": "^9.31.0",
+    "eslint": "^4.1.1",
     "eslint-plugin-vue": "~10.3.0",
     "jiti": "^2.4.2",
     "npm-run-all2": "^8.0.4",
@@ -42,7 +42,7 @@
     "rollup-plugin-visualizer": "^6.0.3",
     "sass": "^1.91.0",
     "typescript": "~5.9.2",
-    "vite": "^8.0.0-beta.12",
+    "vite": "^8.0.0-beta.14",
     "vite-plugin-vue-devtools": "^8.0.0",
     "vue-tsc": "^3.0.7"
   }
