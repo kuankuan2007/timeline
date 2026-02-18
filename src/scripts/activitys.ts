@@ -142,7 +142,7 @@ const activitys: Activity[] = [
     province: '四川',
     city: '成都',
     address: '成都友豪锦江酒店',
-    plan: Plan.WaitingTicketSales,
+    plan: Plan.FindingRoommate,
   },
 ];
 export default activitys;
