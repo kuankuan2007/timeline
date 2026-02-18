@@ -46,7 +46,10 @@
               <k-icon id="calendar" inline />
               <span class="gap"></span>
               <span class="date">
-                {{ dateToString(activity.dateStart) }} 至 {{ dateToString(activity.dateEnd) }} ({{
+                {{ dateToString(activity.dateStart) }}<span class="gap"></span>至<span
+                  class="gap"
+                ></span
+                >{{ dateToString(activity.dateEnd) }}<span class="gap"></span>({{
                   activity.duration()
                 }}天)</span
               >
