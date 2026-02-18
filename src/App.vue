@@ -2,16 +2,33 @@
   <div class="app-root">
     <k-theme-button @show-debug="showDebug = true" />
     <div class="timeline-list">
-      <div v-for="activity, index in activitys" :key="activity.name + '.' + activity.title" class="activity">
-
+      <div
+        v-for="(activity, index) in activitys"
+        :key="activity.name + '.' + activity.title"
+        class="activity"
+        :class="[activity.statue()]"
+      >
         <div class="timeline">
-          <div class="time-tag"
-            v-if="index && activitys[index - 1]?.dateStart.getMonth() !== activity.dateStart.getMonth()">
+          <div
+            class="time-tag"
+            v-if="
+              index && activitys[index - 1]?.dateStart.getMonth() !== activity.dateStart.getMonth()
+            "
+          >
             <div class="month">{{ activity.dateStart.getMonth() + 1 }}月</div>
             <div class="time-tag-line"></div>
-            <div class="year" :style="{
-              opacity: index && activitys[index - 1]?.dateStart.getFullYear() !== activity.dateStart.getFullYear() ? 1 : 0
-            }">{{ activity.dateStart.getFullYear() }}年</div>
+            <div
+              class="year"
+              :style="{
+                opacity:
+                  index &&
+                  activitys[index - 1]?.dateStart.getFullYear() !== activity.dateStart.getFullYear()
+                    ? 1
+                    : 0,
+              }"
+            >
+              {{ activity.dateStart.getFullYear() }}年
+            </div>
           </div>
           <div class="activity-line"></div>
           <div class="before line"></div>
@@ -19,25 +36,43 @@
           <div class="after line"></div>
         </div>
         <div class="content" tabindex="0">
-
-          <p class="title-box"><span class="name">{{ activity.name }}</span>·<span class="title">{{ activity.title
-          }}</span></p>
+          <h2 class="title-box">
+            <span class="name">{{ activity.name }}</span
+            >·<span class="title">{{ activity.title }}</span>
+          </h2>
 
           <div class="detail">
-            <p class="date-city"><k-icon id="calendar" inline /> <span class="date">
-                {{ dateToString(activity.dateStart) }} 至 {{ dateToString(activity.dateEnd) }} ({{ activity.duration()
-                }}天)</span></p>
+            <p class="date-city">
+              <k-icon id="calendar" inline />
+              <span class="gap"></span>
+              <span class="date">
+                {{ dateToString(activity.dateStart) }} 至 {{ dateToString(activity.dateEnd) }} ({{
+                  activity.duration()
+                }}天)</span
+              >
+            </p>
             <div class="address-box">
-              <p class="city"><k-icon id="city" inline /> <span v-if="activity.province">{{ activity.province
-                  }}·</span><span v-if="activity.city">{{ activity.city }}</span></p>
-              <p class="address"><k-icon id="address" inline /> {{ activity.address }}</p>
+              <p class="city">
+                <k-icon id="city" inline />
+                <span class="gap"></span>
+
+                <span v-if="activity.province">{{ activity.province }}·</span
+                ><span v-if="activity.city">{{ activity.city }}</span>
+              </p>
+              <p class="address">
+                <k-icon id="address" inline />
+                <span class="gap"></span><span>{{ activity.address }}</span>
+              </p>
             </div>
           </div>
 
-          <div v-if="activity.plan && activity.statue() === Statue.Plan" class="plan">{{
-            roomStatueText[activity.plan] }}</div>
+          <div v-if="activity.plan && activity.statue() === Statue.Plan" class="plan">
+            {{ roomStatueText[activity.plan] }}
+          </div>
 
-          <div class="statue" :class="`statue-${activity.statue()}`">{{ statueText[activity.statue()] }}</div>
+          <div class="statue" :class="`statue-${activity.statue()}`">
+            {{ statueText[activity.statue()] }}
+          </div>
         </div>
       </div>
     </div>
@@ -51,21 +86,26 @@ import { Statue, statueText, roomStatueText } from './types/timeline';
 import KDebug from './components/KDebug.vue';
 import KThemeButton from './components/KThemeButton.vue';
 const showDebug = ref(false);
-const activitys = ref(_activitys.toSorted((a, b) => b.dateStart.getTime() - a.dateStart.getTime()).map((activity) => ({
-  ...activity,
-  statue() {
-    if (this.dateStart.getTime() > Date.now()) {
-      return Statue.Plan;
-    }
-    if (this.dateEnd.getTime() > Date.now()) {
-      return Statue.Ongoing;
-    }
-    return Statue.Ended;
-  },
-  duration() {
-    return (this.dateEnd.getTime() - this.dateStart.getTime()) / (1000 * 60 * 60 * 24) + 1;
-  },
-})));
+
+const activitys = ref(
+  _activitys
+    .toSorted((a, b) => b.dateStart.getTime() - a.dateStart.getTime())
+    .map((activity) => ({
+      ...activity,
+      statue() {
+        if (this.dateStart.getTime() > Date.now()) {
+          return Statue.Plan;
+        }
+        if (this.dateEnd.getTime() > Date.now()) {
+          return Statue.Ongoing;
+        }
+        return Statue.Ended;
+      },
+      duration() {
+        return (this.dateEnd.getTime() - this.dateStart.getTime()) / (1000 * 60 * 60 * 24) + 1;
+      },
+    }))
+);
 function dateToString(date: Date) {
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 }
@@ -74,7 +114,6 @@ function dateToString(date: Date) {
 @use '@/styles/theme.scss' as *;
 @use 'sass:color';
 
-
 .timeline-list {
   font-size: min(1rem, 2.5vmin);
   display: grid;
@@ -82,9 +121,17 @@ function dateToString(date: Date) {
   grid-auto-columns: minmax(max-content, 30em);
   justify-content: center;
 
+  span.gap {
+    display: inline-block;
+    width: 0.3em;
+  }
+  h2.title-box {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 700;
+  }
 
   .activity {
-
     position: relative;
     display: flex;
 
@@ -93,10 +140,7 @@ function dateToString(date: Date) {
 
     $timeline-width: 2em;
 
-
-
     .timeline {
-
       width: $timeline-width;
       position: relative;
       $size: 1em;
@@ -117,13 +161,12 @@ function dateToString(date: Date) {
       }
 
       .ball {
-        border: $size*0.5 solid;
+        border: $size * 0.5 solid;
         position: absolute;
         left: 50%;
         top: 50%;
         border-radius: 9999999px;
         transform: translate(-50%, -50%);
-
       }
 
       .time-tag {
@@ -165,9 +208,7 @@ function dateToString(date: Date) {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-
       }
-
 
       .before {
         top: 0;
@@ -193,11 +234,12 @@ function dateToString(date: Date) {
         border-radius: 3em;
       }
 
-
       @include useTheme {
         background: color.mix(getTheme('background'), getTheme('active-color'), 85%);
         border-color: color.mix(getTheme('background'), getTheme('active-color'), 70%);
-        filter: drop-shadow(0 0 0.3em rgba(color.mix(getTheme('background'), getTheme('active-color'), 70%), 0.5));
+        filter: drop-shadow(
+          0 0 0.3em rgba(color.mix(getTheme('background'), getTheme('active-color'), 70%), 0.5)
+        );
       }
 
       &:hover,
@@ -205,10 +247,11 @@ function dateToString(date: Date) {
         @include useTheme {
           background: color.mix(getTheme('background'), getTheme('active-color'), 80%);
           border-color: color.mix(getTheme('background'), getTheme('active-color'), 60%);
-          filter: drop-shadow(0 0 0.6em rgba(color.mix(getTheme('background'), getTheme('active-color'), 50%), 0.8));
+          filter: drop-shadow(
+            0 0 0.6em rgba(color.mix(getTheme('background'), getTheme('active-color'), 50%), 0.8)
+          );
         }
       }
-
 
       p {
         margin: 0.5em 0;
@@ -218,7 +261,6 @@ function dateToString(date: Date) {
           font-weight: bold;
           margin: 0;
         }
-
       }
 
       .statue {
@@ -257,7 +299,8 @@ function dateToString(date: Date) {
         padding: 0.3em 1em;
 
         @include useTheme {
-          background-color: color.mix(getTheme('strong-color'), getTheme('background'), 30%);
+          background-color: rgba(color.mix(getTheme('color'), getTheme('background'), 50%), 0.3);
+          box-shadow: 0 0 0.2em rgba(color.mix(getTheme('color'), getTheme('background'), 0%), 0.5);
         }
       }
     }

@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Plan, type Activity } from '@/types/timeline';
 
 const activitys: Activity[] = [
@@ -124,9 +123,10 @@ const activitys: Activity[] = [
     province: '四川',
     city: '成都',
     address: '路易城堡',
-  }, {
-    name: "Hi Furry",
-    title: "赤羽逐光",
+  },
+  {
+    name: 'Hi Furry',
+    title: '赤羽逐光',
     dateStart: new Date('2026-05-01T00:00:00+08:00'),
     dateEnd: new Date('2026-05-04T00:00:00+08:00'),
     province: '广东',
