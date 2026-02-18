@@ -125,5 +125,15 @@ const activitys: Activity[] = [
     city: '成都',
     address: '路易城堡',
   },
+  {
+    name: '落茜聚',
+    title: '凯诺特游戏',
+    dateStart: new Date('2026-07-24T00:00:00+08:00'),
+    dateEnd: new Date('2026-07-27T00:00:00+08:00'),
+    province: '四川',
+    city: '成都',
+    address: '成都友豪锦江酒店',
+    roomStatus: RoomStatue.FindingRoommate,
+  },
 ];
 export default activitys;
