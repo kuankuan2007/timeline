@@ -7,7 +7,7 @@ export type Activity = {
   city: string;
   address: string;
   url?: string;
-  roomStatus?: RoomStatue;
+  plan?: Plan;
 };
 export enum Statue {
   Plan = 'plan',
@@ -19,11 +19,15 @@ export const statueText: Record<Statue, string> = {
   [Statue.Ongoing]: '进行中',
   [Statue.Ended]: '已结束',
 } as const;
-export enum RoomStatue {
+export enum Plan {
   FindingRoommate = 'finding-roommate',
   FindingRoom = 'finding-room',
+  Pending = 'pending',
+  WaitingTicketSales = 'waiting-ticket-sales',
 }
-export const roomStatueText: Record<RoomStatue, string> = {
-  [RoomStatue.FindingRoommate]: '寻找室友',
-  [RoomStatue.FindingRoom]: '寻找房间',
+export const roomStatueText: Record<Plan, string> = {
+  [Plan.FindingRoommate]: '寻找室友',
+  [Plan.FindingRoom]: '寻找房间',
+  [Plan.Pending]: '待定',
+  [Plan.WaitingTicketSales]: '等待开票',
 } as const;
