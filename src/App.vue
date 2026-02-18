@@ -34,8 +34,8 @@
             </div>
           </div>
 
-          <div v-if="activity.roomStatus && activity.statue() === Statue.Plan" class="room-status">{{
-            roomStatueText[activity.roomStatus] }}</div>
+          <div v-if="activity.plan && activity.statue() === Statue.Plan" class="plan">{{
+            roomStatueText[activity.plan] }}</div>
 
           <div class="statue" :class="`statue-${activity.statue()}`">{{ statueText[activity.statue()] }}</div>
         </div>
@@ -248,7 +248,7 @@ function dateToString(date: Date) {
         }
       }
 
-      .room-status {
+      .plan {
         position: absolute;
         right: 0;
         top: 0;

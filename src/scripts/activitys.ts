@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { RoomStatue, type Activity } from '@/types/timeline';
+import { Plan, type Activity } from '@/types/timeline';
 
 const activitys: Activity[] = [
   {
@@ -124,6 +124,15 @@ const activitys: Activity[] = [
     province: '四川',
     city: '成都',
     address: '路易城堡',
+  }, {
+    name: "Hi Furry",
+    title: "赤羽逐光",
+    dateStart: new Date('2026-05-01T00:00:00+08:00'),
+    dateEnd: new Date('2026-05-04T00:00:00+08:00'),
+    province: '广东',
+    city: '佛山',
+    address: '佛山希尔顿酒店',
+    plan: Plan.WaitingTicketSales,
   },
   {
     name: '落茜聚',
@@ -133,7 +142,7 @@ const activitys: Activity[] = [
     province: '四川',
     city: '成都',
     address: '成都友豪锦江酒店',
-    roomStatus: RoomStatue.FindingRoommate,
+    plan: Plan.WaitingTicketSales,
   },
 ];
 export default activitys;
