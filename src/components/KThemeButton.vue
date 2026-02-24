@@ -8,7 +8,7 @@
       " class="theme-button-icon" />
   </button>
 </template>
-<script setup lang="ts">
+<script setup lang="ts" vapor>
 import KIcon from './KIcon.vue';
 import { themeValue, themeValueList } from '@/scripts/theme';
 const DEBUG_CLICK_GAP = 3000;

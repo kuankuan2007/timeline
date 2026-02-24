@@ -1,7 +1,7 @@
 <template>
   <div class="icon" :class="{ inline }">{{ String.fromCharCode(fontelloData[id]!) }}</div>
 </template>
-<script setup lang="ts">
+<script setup lang="ts" vapor>
 import fontelloData from '@/assets/fontello/data';
 defineProps({
   id: {

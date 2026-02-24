@@ -82,7 +82,7 @@
     <k-debug v-model:show="showDebug" />
   </div>
 </template>
-<script setup lang="ts">
+<script setup lang="ts" vapor>
 import _activitys from './scripts/activitys';
 import KIcon from './components/KIcon.vue';
 import { Statue, statueText, roomStatueText } from './types/timeline';

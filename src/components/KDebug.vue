@@ -12,7 +12,7 @@
           id="cross" /></button></div>
   </div>
 </template>
-<script setup lang="ts">
+<script setup lang="ts" vapor>
 import { show as showBuildInfo } from 'visual:k-build-info';
 import KIcon from './KIcon.vue';
 const show = defineModel<boolean>("show")

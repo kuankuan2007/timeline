@@ -1,9 +1,9 @@
 import '@/styles/main.scss';
 import '@/scripts/theme.ts';
 
-import { createApp } from 'vue';
+import { createVaporApp } from 'vue';
 import App from './App.vue';
 
-const app = createApp(App);
+const app = createVaporApp(App);
 
 app.mount('#app');
