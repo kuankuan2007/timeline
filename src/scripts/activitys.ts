@@ -132,7 +132,6 @@ const activitys: Activity[] = [
     province: '广东',
     city: '佛山',
     address: '佛山希尔顿酒店',
-    plan: Plan.WaitingTicketSales,
   },
   {
     name: '落茜聚',
