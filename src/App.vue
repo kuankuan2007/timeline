@@ -1,7 +1,7 @@
 <template>
   <div class="app-root">
     <k-theme-button @show-debug="showDebug = true" />
-    <div class="timeline-list">
+    <div class="timeline-list" role="main">
       <div
         v-for="(activity, index) in activitys"
         :key="activity.name + '.' + activity.title"
@@ -288,7 +288,7 @@ function dateToString(date: Date) {
 
         &.statue-ended {
           @include theme.use {
-            background-color: color.mix(theme.get('color'), theme.get('background'), 50%);
+            background-color: color.mix(theme.get('color'), theme.get('background'), 30%);
           }
         }
       }
