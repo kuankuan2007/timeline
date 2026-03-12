@@ -17,6 +17,7 @@
     "load-fontello": "node command/load-fontello.mjs"
   },
   "dependencies": {
+    "@kuankuan/assist-2026": "^0.1.7",
     "color": "^5.0.0",
     "unplugin-auto-import": "^20.1.0",
     "vite-plugin-inspect": "^11.3.3",
