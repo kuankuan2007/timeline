@@ -32,7 +32,7 @@ function changeToNextTheme() {
 </script>
 <style scoped lang="scss">
 @use '@/styles/theme' as *;
-@use 'sass:color';
+
 
 button.theme-button {
   position: fixed;
@@ -48,14 +48,14 @@ button.theme-button {
   border-radius: 0.3em;
 
   &:focus {
-    @include useTheme {
-      border-color: getTheme('active-color');
+    @include theme.use {
+      border-color: theme.get('active-color');
     }
   }
 
   &:hover {
-    @include useTheme {
-      color: getTheme('active-color');
+    @include theme.use {
+      color: theme.get('active-color');
     }
   }
 }

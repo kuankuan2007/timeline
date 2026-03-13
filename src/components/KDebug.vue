@@ -19,7 +19,7 @@ const show = defineModel<boolean>("show")
 </script>
 <style scoped lang="scss">
 @use '@/styles/theme' as *;
-@use 'sass:color';
+
 
 .build-info {
   position: fixed;
@@ -37,10 +37,10 @@ const show = defineModel<boolean>("show")
     display: block;
   }
 
-  @include useTheme {
-    background: rgba(getTheme("background"), 0.8);
+  @include theme.use {
+    background: rgba(theme.get("background"), 0.8);
     backdrop-filter: blur(0.2em);
-    border-color: color.mix(getTheme("background"), getTheme("color"), 50%);
+    border-color: color.mix(theme.get("background"), theme.get("color"), 50%);
     pointer-events: all;
 
   }
@@ -69,12 +69,12 @@ const show = defineModel<boolean>("show")
     overflow: hidden;
     transition: background 0.3s;
 
-    @include useTheme {
-      background-color: color.mix(getTheme('active-color'), getTheme('background'), 10%);
-      color: getTheme('color');
+    @include theme.use {
+      background-color: color.mix(theme.get('active-color'), theme.get('background'), 10%);
+      color: theme.get('color');
 
       @media print {
-        border-color: getTheme('color');
+        border-color: theme.get('color');
       }
     }
 
@@ -97,15 +97,15 @@ const show = defineModel<boolean>("show")
       padding: 0.1em 0.5em;
       border-radius: 0.3em;
 
-      @include useTheme {
-        background: color.mix(getTheme('background'), getTheme('active-color'), 50%);
+      @include theme.use {
+        background: color.mix(theme.get('background'), theme.get('active-color'), 50%);
       }
     }
 
     &:hover,
     &:focus {
-      @include useTheme {
-        background: color.mix(getTheme('background'), getTheme('active-color'), 60%);
+      @include theme.use {
+        background: color.mix(theme.get('background'), theme.get('active-color'), 60%);
       }
     }
   }
@@ -127,17 +127,17 @@ const show = defineModel<boolean>("show")
     border-radius: 0.3em;
     cursor: pointer;
 
-    @include useTheme {
-      color: getTheme('color');
-      border-color: getTheme('color');
+    @include theme.use {
+      color: theme.get('color');
+      border-color: theme.get('color');
     }
 
     &:hover,
     &:active,
     &:focus {
-      @include useTheme {
-        color: getTheme('active-color');
-        border-color: getTheme('active-color');
+      @include theme.use {
+        color: theme.get('active-color');
+        border-color: theme.get('active-color');
       }
     }
   }

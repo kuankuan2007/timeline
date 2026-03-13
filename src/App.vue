@@ -1,7 +1,7 @@
 <template>
   <div class="app-root">
     <k-theme-button @show-debug="showDebug = true" />
-    <div class="timeline-list">
+    <div class="timeline-list" role="main">
       <div
         v-for="(activity, index) in activitys"
         :key="activity.name + '.' + activity.title"
@@ -115,7 +115,7 @@ function dateToString(date: Date) {
 </script>
 <style scoped lang="scss">
 @use '@/styles/theme.scss' as *;
-@use 'sass:color';
+
 
 .timeline-list {
   font-size: min(1rem, 2.5vmin);
@@ -149,10 +149,10 @@ function dateToString(date: Date) {
       $size: 1em;
       $line-width: 0.3em;
 
-      @include useTheme {
-        $timeline-color: color.mix(getTheme('color'), getTheme('background'), 50%);
+      @include theme.use {
+        $timeline-color: color.mix(theme.get('color'), theme.get('background'), 50%);
 
-        filter: drop-shadow(0 0 0.2em rgba(getTheme('color'), 0.3));
+        filter: drop-shadow(0 0 0.2em rgba(theme.get('color'), 0.3));
 
         .ball,
         .line,
@@ -237,21 +237,21 @@ function dateToString(date: Date) {
         border-radius: 3em;
       }
 
-      @include useTheme {
-        background: color.mix(getTheme('background'), getTheme('active-color'), 85%);
-        border-color: color.mix(getTheme('background'), getTheme('active-color'), 70%);
+      @include theme.use {
+        background: color.mix(theme.get('background'), theme.get('active-color'), 85%);
+        border-color: color.mix(theme.get('background'), theme.get('active-color'), 70%);
         filter: drop-shadow(
-          0 0 0.3em rgba(color.mix(getTheme('background'), getTheme('active-color'), 70%), 0.5)
+          0 0 0.3em rgba(color.mix(theme.get('background'), theme.get('active-color'), 70%), 0.5)
         );
       }
 
       &:hover,
       &:focus {
-        @include useTheme {
-          background: color.mix(getTheme('background'), getTheme('active-color'), 80%);
-          border-color: color.mix(getTheme('background'), getTheme('active-color'), 60%);
+        @include theme.use {
+          background: color.mix(theme.get('background'), theme.get('active-color'), 80%);
+          border-color: color.mix(theme.get('background'), theme.get('active-color'), 60%);
           filter: drop-shadow(
-            0 0 0.6em rgba(color.mix(getTheme('background'), getTheme('active-color'), 50%), 0.8)
+            0 0 0.6em rgba(color.mix(theme.get('background'), theme.get('active-color'), 50%), 0.8)
           );
         }
       }
@@ -275,20 +275,20 @@ function dateToString(date: Date) {
         padding: 0.3em 1em;
 
         &.statue-plan {
-          @include useTheme {
-            background-color: color.mix(getTheme('active-color'), getTheme('background'), 50%);
+          @include theme.use {
+            background-color: color.mix(theme.get('active-color'), theme.get('background'), 50%);
           }
         }
 
         &.statue-ongoing {
-          @include useTheme {
-            background-color: color.mix(getTheme('strong-color'), getTheme('background'), 50%);
+          @include theme.use {
+            background-color: color.mix(theme.get('strong-color'), theme.get('background'), 50%);
           }
         }
 
         &.statue-ended {
-          @include useTheme {
-            background-color: color.mix(getTheme('color'), getTheme('background'), 50%);
+          @include theme.use {
+            background-color: color.mix(theme.get('color'), theme.get('background'), 30%);
           }
         }
       }
@@ -301,9 +301,9 @@ function dateToString(date: Date) {
         font-size: 0.8em;
         padding: 0.3em 1em;
 
-        @include useTheme {
-          background-color: rgba(color.mix(getTheme('color'), getTheme('background'), 50%), 0.3);
-          box-shadow: 0 0 0.2em rgba(color.mix(getTheme('color'), getTheme('background'), 0%), 0.5);
+        @include theme.use {
+          background-color: rgba(color.mix(theme.get('color'), theme.get('background'), 50%), 0.3);
+          box-shadow: 0 0 0.2em rgba(color.mix(theme.get('color'), theme.get('background'), 0%), 0.5);
         }
       }
     }
