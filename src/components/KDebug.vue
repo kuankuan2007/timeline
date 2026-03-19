@@ -67,7 +67,7 @@ const show = defineModel<boolean>("show")
     row-gap: 1em;
     position: relative;
     overflow: hidden;
-    transition: background 0.3s;
+    @include motion.transition(background 0.3s);
 
     @include theme.use {
       background-color: color.mix(theme.get('active-color'), theme.get('background'), 10%);
@@ -115,7 +115,7 @@ const show = defineModel<boolean>("show")
   position: absolute;
   top: 0.8em;
   right: 0.8em;
-  transition: color 0.3s;
+  @include motion.transition(color 0.3s);
   z-index: 1;
 
   button.close-button {
