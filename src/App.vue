@@ -230,7 +230,7 @@ function dateToString(date: Date) {
       flex: 1 1 auto;
       position: relative;
       border: 0.1em solid;
-      transition: 0.3s;
+      @include motion.transition(0.3s);
 
       @supports (corner-shape: squircle) {
         corner-shape: squircle;
