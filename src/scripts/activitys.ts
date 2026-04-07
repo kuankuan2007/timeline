@@ -143,5 +143,15 @@ const activitys: Activity[] = [
     address: '成都友豪锦江酒店',
     plan: Plan.FindingRoommate,
   },
+  {
+    name: '云幽岛',
+    title: '夏杏逐风纪',
+    dateStart: new Date('2026-08-07T00:00:00+08:00'),
+    dateEnd: new Date('2026-08-09T00:00:00+08:00'),
+    province: '四川',
+    city: '成都',
+    address: '成都恒邦天府喜来登酒店',
+    plan: Plan.WaitingTicketSales,
+  },
 ];
 export default activitys;
