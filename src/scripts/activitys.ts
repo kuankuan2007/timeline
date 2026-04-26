@@ -144,6 +144,15 @@ const activitys: Activity[] = [
     plan: Plan.FindingRoommate,
   },
   {
+    name: '福瑞八奇物志',
+    title: '虚匣伪宴',
+    dateStart: new Date('2026-07-24T00:00:00+08:00'),
+    dateEnd: new Date('2026-07-26T00:00:00+08:00'),
+    province: '四川',
+    city: '成都',
+    address: '成都W酒店',
+  },
+  {
     name: '云幽岛',
     title: '夏杏逐风纪',
     dateStart: new Date('2026-08-07T00:00:00+08:00'),
