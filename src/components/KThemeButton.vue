@@ -1,5 +1,5 @@
 <template>
-  <button class="theme-button clear" @click="changeToNextTheme">
+  <button class="theme-button clear" aria-label="切换主题"  @click="changeToNextTheme">
     <k-icon
       :id="
         {
