@@ -1,4 +1,3 @@
-
 @use '@/assets/fontello/font-defines.scss' as *;
 body {
   margin: 0;
@@ -13,6 +12,6 @@ a {
     color: theme.get('active-color');
   }
 }
-*{
+* {
   font-family: sans-serif;
 }

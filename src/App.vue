@@ -116,7 +116,6 @@ function dateToString(date: Date) {
 <style scoped lang="scss">
 @use '@/styles/theme.scss' as *;
 
-
 .timeline-list {
   font-size: min(1rem, 2.5vmin);
   display: grid;
@@ -303,7 +302,8 @@ function dateToString(date: Date) {
 
         @include theme.use {
           background-color: rgba(color.mix(theme.get('color'), theme.get('background'), 50%), 0.3);
-          box-shadow: 0 0 0.2em rgba(color.mix(theme.get('color'), theme.get('background'), 0%), 0.5);
+          box-shadow: 0 0 0.2em
+            rgba(color.mix(theme.get('color'), theme.get('background'), 0%), 0.5);
         }
       }
     }

@@ -1,25 +1,34 @@
 <template>
   <div class="build-info" :class="{ show }">
     <div class="build-info-list">
-      <component v-for="info in showBuildInfo" :key="info.title" :is="info.url ? 'a' : 'div'" :href="info.url"
-        target="_blank" class="build-info-item" tabindex="-1">
+      <component
+        v-for="info in showBuildInfo"
+        :key="info.title"
+        :is="info.url ? 'a' : 'div'"
+        :href="info.url"
+        target="_blank"
+        class="build-info-item"
+        tabindex="-1"
+      >
         <div class="title">{{ info.title }}</div>
         <div class="content">{{ info.content }}</div>
         <k-icon v-if="info.url" id="link" class="link-icon" />
       </component>
     </div>
-    <div class="close-button-box"><button class="close-button" @click="show = false" tabindex="-1"><k-icon
-          id="cross" /></button></div>
+    <div class="close-button-box">
+      <button class="close-button" @click="show = false" tabindex="-1">
+        <k-icon id="cross" />
+      </button>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
 import { show as showBuildInfo } from 'visual:k-build-info';
 import KIcon from './KIcon.vue';
-const show = defineModel<boolean>("show")
+const show = defineModel<boolean>('show');
 </script>
 <style scoped lang="scss">
 @use '@/styles/theme' as *;
-
 
 .build-info {
   position: fixed;
@@ -38,11 +47,10 @@ const show = defineModel<boolean>("show")
   }
 
   @include theme.use {
-    background: rgba(theme.get("background"), 0.8);
+    background: rgba(theme.get('background'), 0.8);
     backdrop-filter: blur(0.2em);
-    border-color: color.mix(theme.get("background"), theme.get("color"), 50%);
+    border-color: color.mix(theme.get('background'), theme.get('color'), 50%);
     pointer-events: all;
-
   }
 }
 

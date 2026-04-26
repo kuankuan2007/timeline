@@ -1,11 +1,15 @@
 <template>
   <button class="theme-button clear" @click="changeToNextTheme">
-    <k-icon :id="{
-      auto: 'os-follow',
-      light: 'light',
-      dark: 'night',
-    }[themeValue]!
-      " class="theme-button-icon" />
+    <k-icon
+      :id="
+        {
+          auto: 'os-follow',
+          light: 'light',
+          dark: 'night',
+        }[themeValue]!
+      "
+      class="theme-button-icon"
+    />
   </button>
 </template>
 <script setup lang="ts">
@@ -14,25 +18,22 @@ import { themeValue, themeValueList } from '@/scripts/theme';
 const DEBUG_CLICK_GAP = 3000;
 const DEBUG_CLICK_NUM = 5;
 
-const emit = defineEmits<{ showDebug: [] }>()
-const clickHistory: number[] = []
+const emit = defineEmits<{ showDebug: [] }>();
+const clickHistory: number[] = [];
 function changeToNextTheme() {
   themeValue.value =
     themeValueList[(themeValueList.indexOf(themeValue.value) + 1) % themeValueList.length]!;
   while (clickHistory.length && clickHistory[0]! < Date.now() - DEBUG_CLICK_GAP) {
-    clickHistory.shift()
+    clickHistory.shift();
   }
-  clickHistory.push(Date.now())
+  clickHistory.push(Date.now());
   if (clickHistory.length >= DEBUG_CLICK_NUM) {
-    emit('showDebug')
+    emit('showDebug');
   }
 }
-
-
 </script>
 <style scoped lang="scss">
 @use '@/styles/theme' as *;
-
 
 button.theme-button {
   position: fixed;

@@ -1,1 +1,1 @@
-export * from "@kuankuan/assist-2026/src/theme";
+export * from '@kuankuan/assist-2026/src/theme';
