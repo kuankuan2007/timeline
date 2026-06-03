@@ -134,16 +134,6 @@ const activitys: Activity[] = [
     address: '佛山希尔顿酒店',
   },
   {
-    name: '落茜聚',
-    title: '凯诺特游戏',
-    dateStart: new Date('2026-07-24T00:00:00+08:00'),
-    dateEnd: new Date('2026-07-27T00:00:00+08:00'),
-    province: '四川',
-    city: '成都',
-    address: '成都友豪锦江酒店',
-    plan: Plan.FindingRoommate,
-  },
-  {
     name: '福瑞八奇物志',
     title: '虚匣伪宴',
     dateStart: new Date('2026-07-24T00:00:00+08:00'),
@@ -153,14 +143,13 @@ const activitys: Activity[] = [
     address: '成都W酒店',
   },
   {
-    name: '云幽岛',
-    title: '夏杏逐风纪',
+    name: '落茜聚',
+    title: '凯诺特游戏',
     dateStart: new Date('2026-08-07T00:00:00+08:00'),
-    dateEnd: new Date('2026-08-09T00:00:00+08:00'),
+    dateEnd: new Date('2026-08-10T00:00:00+08:00'),
     province: '四川',
     city: '成都',
-    address: '成都恒邦天府喜来登酒店',
-    plan: Plan.FindingRoommate,
+    address: '成都友豪锦江酒店',
   },
 ];
 export default activitys;
