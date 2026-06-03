@@ -35,12 +35,12 @@ function changeToNextTheme() {
 <style scoped lang="scss">
 @use '@/styles/theme' as *;
 
-button.theme-button {
+.theme-button {
+  all: unset;
   position: fixed;
   top: 0;
   right: 0;
   appearance: none;
-  all: unset;
   font-size: 2em;
   cursor: pointer;
   @include motion.transition(0.3s);

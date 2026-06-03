@@ -5,7 +5,7 @@
       <ol class="activity-list">
         <li
           v-for="(activity, index) in activitys"
-          :key="activity.name + '.' + activity.title+'.'+activity.dateStart.toISOString()"
+          :key="activity.name + '.' + activity.title + '.' + activity.dateStart.toISOString()"
           class="activity"
           :class="[activity.statue()]"
         >
@@ -274,7 +274,9 @@ function dateToString(date: Date) {
             );
           }
         }
-
+        address {
+          font-style: normal;
+        }
         p {
           margin: 0.5em 0;
 
