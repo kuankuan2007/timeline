@@ -1,5 +1,7 @@
 import { Plan, type Activity } from '@/types/timeline';
 
+void Plan;
+
 const activitys: Activity[] = [
   {
     name: '幻兽聚',
