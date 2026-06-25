@@ -64,4 +64,18 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
   },
+  build: {
+    rolldownOptions: {
+      output: {
+        codeSplitting: {
+          groups: [
+            {
+              name: "activitys",
+              test: "src/scripts/activitys.ts",
+            }
+          ]
+        }
+      }
+    }
+  }
 });
