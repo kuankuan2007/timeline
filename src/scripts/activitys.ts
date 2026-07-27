@@ -153,5 +153,15 @@ const activitys: Activity[] = [
     city: '成都',
     address: '天府国际大酒店',
   },
+  {
+    name: 'Hi Furry',
+    title: '深蓝遗章',
+    dateStart: new Date('2026-10-01T00:00:00+08:00'),
+    dateEnd: new Date('2026-10-04T00:00:00+08:00'),
+    province: '广东',
+    city: '广州',
+    address: '广州白云国际会议中心岭南东方酒店',
+    plan: Plan.WaitingTicketSales,
+  },
 ];
 export default activitys;
