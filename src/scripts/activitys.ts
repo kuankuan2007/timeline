@@ -151,7 +151,7 @@ const activitys: Activity[] = [
     dateEnd: new Date('2026-08-10T00:00:00+08:00'),
     province: '四川',
     city: '成都',
-    address: '成都友豪锦江酒店',
+    address: '天府国际大酒店',
   },
 ];
 export default activitys;
