@@ -161,7 +161,6 @@ const activitys: Activity[] = [
     province: '广东',
     city: '广州',
     address: '广州白云国际会议中心岭南东方酒店',
-    plan: Plan.WaitingTicketSales,
   },
 ];
 export default activitys;
