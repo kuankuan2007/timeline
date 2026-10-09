@@ -162,5 +162,15 @@ const activitys: Activity[] = [
     city: '广州',
     address: '广州白云国际会议中心岭南东方酒店',
   },
+  {
+    name: '兽友汇',
+    title: '明日计划',
+    dateStart: new Date('2027-02-12T00:00:00+08:00'),
+    dateEnd: new Date('2027-02-14T00:00:00+08:00'),
+    province: '四川',
+    city: '绵阳',
+    address: '绵阳富临桃花岛酒店',
+    plan: Plan.Staff,
+  }
 ];
 export default activitys;

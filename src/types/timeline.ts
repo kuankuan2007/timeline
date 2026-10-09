@@ -24,10 +24,12 @@ export enum Plan {
   FindingRoom = 'finding-room',
   Pending = 'pending',
   WaitingTicketSales = 'waiting-ticket-sales',
+  Staff = 'staff',
 }
 export const roomStatueText: Record<Plan, string> = {
   [Plan.FindingRoommate]: '寻找室友',
   [Plan.FindingRoom]: '寻找房间',
   [Plan.Pending]: '待定',
   [Plan.WaitingTicketSales]: '等待开票',
+  [Plan.Staff]: 'STAFF',
 } as const;
