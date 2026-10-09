@@ -16,22 +16,16 @@
                 index &&
                 activitys[index - 1]?.dateStart.getMonth() !== activity.dateStart.getMonth()
               "
+              :class="{
+                'show-year':
+                  index &&
+                  activitys[index - 1]?.dateStart.getFullYear() !==
+                    activity.dateStart.getFullYear(),
+              }"
             >
               <div class="month">{{ activity.dateStart.getMonth() + 1 }}月</div>
               <div class="time-tag-line"></div>
-              <div
-                class="year"
-                :style="{
-                  opacity:
-                    index &&
-                    activitys[index - 1]?.dateStart.getFullYear() !==
-                      activity.dateStart.getFullYear()
-                      ? 1
-                      : 0,
-                }"
-              >
-                {{ activity.dateStart.getFullYear() }}年
-              </div>
+              <div class="year">{{ activity.dateStart.getFullYear() }}年</div>
             </div>
             <div class="activity-line"></div>
             <div class="before line"></div>
@@ -212,6 +206,14 @@ function dateToString(date: Date) {
           .month,
           .year {
             padding-right: 0.5em;
+          }
+          .year {
+            opacity: 0;
+          }
+          &.show-year {
+            .year {
+              opacity: 1;
+            }
           }
         }
 
