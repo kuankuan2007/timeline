@@ -163,6 +163,24 @@ const activitys: Activity[] = [
     address: '广州白云国际会议中心岭南东方酒店',
   },
   {
+    name: '冬兽聚',
+    title: '2026',
+    dateStart: new Date('2026-12-18T00:00:00+08:00'),
+    dateEnd: new Date('2026-12-20T00:00:00+08:00'),
+    city: '上海',
+    address: '夏阳湖皇冠假日酒店',
+  },
+  {
+    name: '墨兽居',
+    title: '锦城夜笙歌',
+    dateStart: new Date('2027-01-01T00:00:00+08:00'),
+    dateEnd: new Date('2027-01-03T00:00:00+08:00'),
+    province: '四川',
+    city: '成都',
+    address: '成都希尔顿酒店',
+    plan: Plan.FindingRoommate,
+  },
+  {
     name: '兽友汇',
     title: '明日计划',
     dateStart: new Date('2027-02-12T00:00:00+08:00'),
@@ -171,6 +189,6 @@ const activitys: Activity[] = [
     city: '绵阳',
     address: '绵阳富临桃花岛酒店',
     plan: Plan.Staff,
-  }
+  },
 ];
 export default activitys;
