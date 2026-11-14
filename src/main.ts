@@ -1,10 +1,17 @@
 import '@/styles/main.scss';
-import '@/scripts/theme.ts';
-import '@kuankuan/assist-2026/init';
 
-import { createApp } from 'vue';
+import { ViteSSG } from 'vite-ssg/single-page';
 import App from './App.vue';
 
-const app = createApp(App);
-
-app.mount('#app');
+export const createApp = ViteSSG(
+	App,
+	async ({ app, initialState }) => {
+		if (import.meta.env.SSR) {
+			initialState.renderTime = Date.now();
+		} else {
+			await import('@kuankuan/assist-2026/init');
+		}
+		app.provide('renderTime', initialState.renderTime ?? Date.now());
+	},
+	{ hydration: !import.meta.env.DEV, useHead: false }
+);

@@ -1,5 +1,5 @@
 <template>
-  <div class="icon" :class="{ inline }" aria-hidden="true">{{ String.fromCharCode(fontelloData[id]!) }}</div>
+  <span class="icon" :class="{ inline }" aria-hidden="true">{{ String.fromCharCode(fontelloData[id]!) }}</span>
 </template>
 <script setup lang="ts">
 import fontelloData from '@/assets/fontello/data';
@@ -16,7 +16,7 @@ defineProps({
 </script>
 <style scoped lang="scss">
 @use '@/assets/fontello/fontello.scss';
-:root div.icon {
+:root span.icon {
   @include fontello.fontello;
   user-select: none;
   display: block;
