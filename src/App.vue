@@ -1,6 +1,8 @@
 <template>
   <div class="app-root">
-    <k-theme-button @show-debug="showDebug = true" />
+    <client-only>
+      <k-theme-button @show-debug="showDebug = true" />
+    </client-only>
     <main class="timeline-list">
       <ol class="activity-list">
         <li
@@ -14,18 +16,21 @@
               class="time-tag"
               v-if="
                 index &&
-                activitys[index - 1]?.dateStart.getMonth() !== activity.dateStart.getMonth()
+                activitys[index - 1] &&
+                activityDate(activitys[index - 1].dateStart).getUTCMonth() !==
+                  activityDate(activity.dateStart).getUTCMonth()
               "
               :class="{
                 'show-year':
                   index &&
-                  activitys[index - 1]?.dateStart.getFullYear() !==
-                    activity.dateStart.getFullYear(),
+                  activitys[index - 1] &&
+                  activityDate(activitys[index - 1].dateStart).getUTCFullYear() !==
+                    activityDate(activity.dateStart).getUTCFullYear(),
               }"
             >
-              <div class="month">{{ activity.dateStart.getMonth() + 1 }}月</div>
+              <div class="month">{{ activityDate(activity.dateStart).getUTCMonth() + 1 }}月</div>
               <div class="time-tag-line"></div>
-              <div class="year">{{ activity.dateStart.getFullYear() }}年</div>
+              <div class="year">{{ activityDate(activity.dateStart).getUTCFullYear() }}年</div>
             </div>
             <div class="activity-line"></div>
             <div class="before line"></div>
@@ -87,16 +92,23 @@
         </li>
       </ol>
     </main>
-    <k-debug v-model:show="showDebug" />
+    <client-only>
+      <k-debug v-model:show="showDebug" />
+    </client-only>
   </div>
 </template>
 <script setup lang="ts">
 import _activitys from './scripts/activitys';
 import KIcon from './components/KIcon.vue';
 import { Statue, statueText, roomStatueText } from './types/timeline';
-import KDebug from './components/KDebug.vue';
-import KThemeButton from './components/KThemeButton.vue';
+import { defineAsyncComponent, inject, onMounted } from 'vue';
+const KDebug = defineAsyncComponent(() => import('./components/KDebug.vue'));
+const KThemeButton = defineAsyncComponent(() => import('./components/KThemeButton.vue'));
 const showDebug = ref(false);
+const renderTime = ref(inject<number>('renderTime') ?? Date.now());
+onMounted(() => {
+  renderTime.value = Date.now();
+});
 
 const activitys = ref(
   _activitys
@@ -104,10 +116,10 @@ const activitys = ref(
     .map((activity) => ({
       ...activity,
       statue() {
-        if (this.dateStart.getTime() > Date.now()) {
+        if (this.dateStart.getTime() > renderTime.value) {
           return Statue.Plan;
         }
-        if (this.dateEnd.getTime() > Date.now()) {
+        if (this.dateEnd.getTime() > renderTime.value) {
           return Statue.Ongoing;
         }
         return Statue.Ended;
@@ -118,7 +130,11 @@ const activitys = ref(
     }))
 );
 function dateToString(date: Date) {
-  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  const localDate = activityDate(date);
+  return `${localDate.getUTCFullYear()}-${localDate.getUTCMonth() + 1}-${localDate.getUTCDate()}`;
+}
+function activityDate(date: Date) {
+  return new Date(date.getTime() + 8 * 60 * 60 * 1000);
 }
 </script>
 <style scoped lang="scss">
