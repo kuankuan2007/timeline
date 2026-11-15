@@ -10,6 +10,7 @@ import postcssPresetEnv from 'postcss-preset-env';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import VitePluginBuildInfo from '@kuankuan/assist-2026/plugins/buildInfo';
+import VitePluginInlineThemeInit from '@kuankuan/assist-2026/plugins/inlineThemeInit';
 
 const sassAddition = `
 @use '@/styles/theme.scss';
@@ -18,8 +19,9 @@ const sassAddition = `
 @use 'sass:color';`;
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(() => ({
   plugins: [
+    VitePluginInlineThemeInit(),
     vue(),
     vueDevTools(),
     Inspect(),
@@ -70,12 +72,12 @@ export default defineConfig({
         codeSplitting: {
           groups: [
             {
-              name: "activitys",
-              test: "src/scripts/activitys.ts",
-            }
-          ]
-        }
-      }
-    }
-  }
-});
+              name: 'activitys',
+              test: 'src/scripts/activitys.ts',
+            },
+          ],
+        },
+      },
+    },
+  },
+}));

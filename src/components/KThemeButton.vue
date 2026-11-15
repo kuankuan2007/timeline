@@ -6,7 +6,7 @@
           auto: 'os-follow',
           light: 'light',
           dark: 'night',
-        }[themeValue]!
+        }[themeValue as never]!
       "
       class="theme-button-icon"
     />
