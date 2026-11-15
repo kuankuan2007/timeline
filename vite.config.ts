@@ -19,7 +19,7 @@ const sassAddition = `
 @use 'sass:color';`;
 
 // https://vitejs.dev/config/
-export default defineConfig(() => ({
+export default defineConfig(({ command }) => ({
   plugins: [
     VitePluginInlineThemeInit(),
     vue(),
@@ -36,7 +36,7 @@ export default defineConfig(() => ({
       filename: './temp/test.html',
       open: true,
     }),
-    VitePluginBuildInfo(),
+    VitePluginBuildInfo(true, command === 'build'),
   ],
   css: {
     postcss: {
