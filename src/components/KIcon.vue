@@ -1,5 +1,7 @@
 <template>
-  <span class="icon" :class="{ inline }" aria-hidden="true">{{ String.fromCharCode(fontelloData[id]!) }}</span>
+  <span class="icon" :class="{ inline }" aria-hidden="true">{{
+    String.fromCharCode(fontelloData[id]!)
+  }}</span>
 </template>
 <script setup lang="ts">
 import fontelloData from '@/assets/fontello/data';

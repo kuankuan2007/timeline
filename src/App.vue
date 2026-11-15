@@ -39,8 +39,9 @@
           </div>
           <article class="content" tabindex="0">
             <h2 class="title-box">
-              <span class="name">{{ activity.name }}</span
-              >·<span class="title">{{ activity.title }}</span>
+              <span class="name">{{ activity.name }}</span>·<span class="title">{{
+                activity.title
+              }}</span>
             </h2>
 
             <div class="detail">
